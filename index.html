@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tribal Council Script Generator</title>
+    <style>
+        body {
+            background-color: white;
+            color: black; /* Set text color to black for contrast */
+            margin: 0;
+            padding: 20px;
+            font-family: Oswald, sans-serif;
+        }
+        .input-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .input-group {
+            flex: 1;
+        }
+
+        .input-group label,
+        .input-group input {
+            display: block;
+            width: 100%;
+        }
+
+        .input-group input {
+            margin-top: 5px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Input fields for custom values with players side by side -->
+    <div class="input-container">
+        <div class="input-group">
+            <label for="pers1">Person 1 Name:</label>
+            <input type="text" id="pers1" value="">
+
+            <label for="v1">Votes for Person 1:</label>
+            <input type="number" id="v1" value="">
+        </div>
+
+        <div class="input-group">
+            <label for="pers2">Person 2 Name:</label>
+            <input type="text" id="pers2" value="">
+
+            <label for="v2">Votes for Person 2:</label>
+            <input type="number" id="v2" value="">
+        </div>
+    </div>
+
+    <label for="remark">Remark:</label>
+    <textarea id="remark" cols="50"></textarea>
+    <br><br>
+
+    <label for="nthout">Nth Person Out:</label>
+    <input type="text" id="nthout" value=""><br><br>
+
+    <label for="JuryNum">Jury Number:</label>
+    <input type="number" id="JuryNum" value=""><br><br>
+
+    <label for="SeasonName">Season Name:</label>
+    <input type="text" id="SeasonName" value=""><br><br> 
+
+    <button onclick="generateScript()">Generate Script</button>
+
+    <textarea id="output" rows="10" cols="50"></textarea>
+
+    <script>
+        function generateScript() {
+            let pers1 = document.getElementById('pers1').value;
+            let pers2 = document.getElementById('pers2').value;
+            let v1 = parseInt(document.getElementById('v1').value);
+            let v2 = parseInt(document.getElementById('v2').value);
+            let remark = document.getElementById('remark').value;
+            let nthout = document.getElementById('nthout').value;
+            let JuryNum = parseInt(document.getElementById('JuryNum').value);
+            let SeasonName = document.getElementById('SeasonName').value;
+
+            const nth = {
+                1: "First",
+                2: "Second",
+                3: "Third",
+                4: "Fourth",
+                5: "Fifth",
+                6: "Sixth",
+                7: "Seventh",
+                8: "Eighth",
+                9: "Ninth",
+                10: "Tenth",
+                11: "Eleventh",
+                12: "Twelfth",
+                13: "Thirteenth"
+            };
+
+            const vals = {
+                1: "one",
+                2: "two",
+                3: "three",
+                4: "four",
+                5: "five",
+                6: "six",
+                7: "seven",
+                8: "eight",
+                9: "nine",
+                10: "ten",
+                11: "eleven",
+                12: "twelve",
+                13: "thirteen"
+            };
+
+            let tribalstr = "I'll go get the votes.\n\n.\n\n.\n\n.\n\n";
+            tribalstr += "If anyone has a hidden immunity idol, and would like to play it, now would be the time to do so.";
+            for (let i = 1; i <= 10; i++) {
+                tribalstr += "\n\n.";
+            }
+            tribalstr += "\n\nAlright, I'll read the votes\n\n"; //Creates the initial tribal string
+
+            let total = v1 + v2;
+            let count = 1;
+
+            for (let i = 1; i <= v2; i++) { //Read 1 and then 1 for each of the minority votes
+                tribalstr += `${nth[count]} vote...`;
+                for (let j = 1; j <= 10; j++) {
+                    tribalstr += "\n\n.";
+                }
+                tribalstr += `\n\n#${pers1}\n\n`;
+                count++;
+                tribalstr += `${nth[count]} vote...`;
+                for (let j = 1; j <= 10; j++) {
+                    tribalstr += "\n\n.";
+                }
+                tribalstr += `\n\n#${pers2}\n\n`;
+                count++;
+            }
+
+            let extra = Math.ceil((total + 1) / 2) - v2; //Additional votes needing to be read
+            tribalstr += `\n\n${nth[count]} vote...`;
+            for (let i = 1; i < extra; i++) {
+                for (let j = 1; j <= 10; j++) {
+                    tribalstr += "\n\n.";
+                }
+                tribalstr += `\n\n#${pers1}`;
+                count++;
+            }
+
+            for (let i = 1; i <= 10; i++) {
+                tribalstr += "\n\n.";
+            }
+            tribalstr += `\n\n${nthout} person voted out of SROrgs: ${SeasonName}`;
+            if (JuryNum > 0) {
+                tribalstr += ` and ${nth[JuryNum].toLowerCase()} member of our jury \n\n`;
+            } else {
+                tribalstr += "\n\n";
+            }
+            tribalstr += `#${pers1}`;
+            tribalstr += `\n\n#${pers1} that's ${vals[count - v2]} and that's enough. You will need to bring me your torch.\n\n`;
+            tribalstr += `> ${pers1} walks over.\n\n`;
+            tribalstr += `${pers1} the tribe has spoken\n\n> Snuff.\n\nIt's time for you to go.\n\n`;
+            tribalstr += `${remark}\n\n`;
+            tribalstr += "Grab your torches and head back to camp. Good night.";
+
+            document.getElementById("output").value = tribalstr;
+        }
+    </script>
+</body>
+</html>
