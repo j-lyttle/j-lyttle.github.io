@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
-            color: white; /* Set text color to black for contrast */
             margin: 0;
             padding: 20px;
             font-family: Oswald, sans-serif;
@@ -24,11 +23,21 @@
 <script>
     
     function generateQuote(){
-        let quotes = [["Neil Gaiman", "Coraline", "Fairy tales are more than true: not because they tell us that dragons exist, but because they tell us that dragons can be beaten."],
-            ["Steven Erikson", "Anomander Rake", "There is no struggle too vast, no odds too overwhelming, for even should we fail - should we fall - we will know that we have lived."],
-            ["James Moloney","The Book of Lies","My fate is my own; my heart remains free \nNot magic but wisdum reveals destiny."]];
-    
-    
+        let quotes = [["Neil Gaiman", "Coraline", "Fairy tales are more than true: not because they tell us that dragons exist, but because they tell us that dragons can be beaten."]
+            ,["Steven Erikson", "Anomander Rake", "There is no struggle too vast, no odds too overwhelming, for even should we fail - should we fall - we will know that we have lived."]
+            ,["James Moloney", "The Book of Lies", "My fate is my own; my heart remains free \nNot magic but wisdum reveals destiny."]
+            ,["Robert Jordan", "Lan Mandragoran", "There is one rule, above all others, for being a man. Whatever comes, face it on your feet."]
+            ,["Robert Jordan", "Rand Al'Thor", "Because each time we live, we get to love again."]
+            ,["Robert Jordan", "The Eye of the World", "Death is lighter than a feather. Duty, heavier than a mountain."]
+            ,["Steven Erikson", "Deadhouse Gates", "Children are dying. That‘s a succinct summary of human kind, I’d say. Who needs tomes and volumes of history? Children are dying. The injustices of the world hide in those three words. Quote me, Duiker, and your work‘s done."]
+            ,["Steven Erikson", "Itkovian", "I am not yet done"]
+            ,["Nelson Mandela", "", "The greatest glory in living lies not in never falling, but in rising every time we fall."]
+            ,["Brandon Sanderson", "The Way of Kings", "Life before Death. \nStrength before Weakness.\nJourney before Destination."]
+            ,["Brandon Sanderson", "Oathbringer", "The most important step a man can take. It's not the first one, is it?\nIt's the next one. Always the next step, Dalinar."]
+            ,["Brandon Sanderson", "Wit", "Failure is the mark of a life well lived. In turn, the only way to live without failure is to be of no use to anyone"]
+            ,["Brandon Sanderson", "Rhythm of War", "It will, but then it will get better. Then it will get worse again. Then better. This is life, and I will not lie by saying every day will be sunshine. But there will be sunshine again, and that is a very different thing to say. That is truth. I promise you, Kaladin: You will be warm again."]
+            
+        ];
     
     quote = quotes[quotes.length * Math.random() | 0]
 
