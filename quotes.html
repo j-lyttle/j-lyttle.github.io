@@ -1,1 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: black;
+            color: white; /* Set text color to black for contrast */
+            margin: 0;
+            padding: 20px;
+            font-family: Oswald, sans-serif;
+        }
+        
+    </style>
+</head>
+<body>
+    <blockquote>
+        <q id="quote">
+            Body
+        </q>
+        <p id="auth">-Aldous Huxley,</p><cite id="work"></cite>
+    </blockquote>
+</body>
+<script>
+    
+    function generateQuote(){
+        let quotes = [["Neil Gaiman", "Coraline", "Fairy tales are more than true: not because they tell us that dragons exist, but because they tell us that dragons can be beaten."],
+            ["Steven Erikson", "Anomander Rake", "There is no struggle too vast, no odds too overwhelming, for even should we fail - should we fall - we will know that we have lived."],
+            ["James Moloney","The Book of Lies","My fate is my own; my heart remains free \nNot magic but wisdum reveals destiny."]];
+    
+    
+    
+    quote = quotes[quotes.length * Math.random() | 0]
 
+    document.getElementById("quote").innerText = quote[2]
+    document.getElementById("auth").innerText = quote[0]
+    document.getElementById("work").innerText = quote[1]
+    }
+    
+    window.onload = generateQuote
+</script>
+</html>
